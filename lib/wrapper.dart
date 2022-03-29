@@ -1,4 +1,4 @@
-// ignore_for_file: unused_local_variable
+// ignore_for_file: unused_local_variable, prefer_const_constructors_in_immutables
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flames/result.dart';
@@ -6,6 +6,8 @@ import 'package:flames/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:url_launcher/link.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Wrapper extends StatefulWidget {
   final List<String>? history;
@@ -53,8 +55,8 @@ class _WrapperState extends State<Wrapper> {
     late List<String>? flames = widget.flames;
     return Scaffold(
         appBar: AppBar(
-          title: Center(
-            child: const Text(
+          title: const Center(
+            child: Text(
               'Welcome',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
@@ -70,7 +72,7 @@ class _WrapperState extends State<Wrapper> {
               padding: const EdgeInsets.fromLTRB(25.0, 0.0, 25.0, 0.0),
               child: Column(
                 children: [
-                  SizedBox(height: 20.0),
+                  const SizedBox(height: 20.0),
                   Row(
                     children: <Widget>[
                       SizedBox(
@@ -85,7 +87,7 @@ class _WrapperState extends State<Wrapper> {
                         ),
                       ),
                       Container(
-                        padding: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
+                        padding: const EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
                         child: AnimatedTextKit(
                           animatedTexts: [
                             RotateAnimatedText(
@@ -121,11 +123,12 @@ class _WrapperState extends State<Wrapper> {
                             FadeAnimatedText(
                               'Everything',
                               textStyle: style4,
-                              duration: Duration(milliseconds: 5000),
+                              duration: const Duration(milliseconds: 5000),
                             ),
                           ],
                           onTap: () {
-                            print("Tap Event");
+                            launch(
+                                "https://www.wikihow.com/Play-%22Flame%22#:~:text=FLAME%20is%20a%20game%20named,explore%20the%20world%20of%20crushes");
                           },
                         ),
                       ),
@@ -212,11 +215,19 @@ class _WrapperState extends State<Wrapper> {
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           setState(() {
-                            history?.insert(
-                                history.length,
-                                nameController.text +
-                                    ' & ' +
-                                    partnerController.text);
+                            if (nameController.text != partnerController.text) {
+                              history?.insert(
+                                  history.length,
+                                  nameController.text +
+                                      ' & ' +
+                                      partnerController.text);
+                            } else {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content: Text(
+                                    "Same name/alter-ego will not be stored in history!"),
+                              ));
+                            }
                           });
                           Navigator.of(context, rootNavigator: true).push(
                             CupertinoPageRoute<bool>(

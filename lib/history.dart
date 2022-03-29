@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_web_libraries_in_flutter
+// ignore_for_file: avoid_web_libraries_in_flutter, must_be_immutable
 import 'package:flames/styles.dart';
 import 'package:flutter/material.dart';
 
@@ -18,14 +18,14 @@ class _HistoryState extends State<History> {
     history = widget.history;
     List<String>? flames;
     flames = widget.flames;
-    print(flames);
+    //print(flames);
     // List<String> partnerNameHistory = [];
     // partnerNameHistory.insert(partnerNameHistory.length, widget.partnerName);
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Center(
-          child: const Text(
+        title: const Center(
+          child: Text(
             'History',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
@@ -42,14 +42,21 @@ class _HistoryState extends State<History> {
             colorHistory(index);
             return Dismissible(
               background: Padding(
-                padding: EdgeInsets.fromLTRB(10.0, 6.0, 10.0, 6.0),
+                padding: const EdgeInsets.fromLTRB(10.0, 6.0, 10.0, 6.0),
                 child: Container(
+                  child: const Center(
+                    child: Text(
+                      'Deleted',
+                      style: style6,
+                    ),
+                  ),
                   decoration: BoxDecoration(
                       color: Colors.red,
                       border: Border.all(
-                        color: Color(0xffeb0029),
+                        color: const Color(0xffeb0029),
                       ),
-                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(20))),
                 ),
               ),
               key: UniqueKey(),
@@ -60,7 +67,7 @@ class _HistoryState extends State<History> {
               child: Card(
                 margin: const EdgeInsets.fromLTRB(10.0, 6.0, 10.0, 6.0),
                 shape: RoundedRectangleBorder(
-                  side: BorderSide(color: Colors.black, width: 1),
+                  side: const BorderSide(color: Colors.black, width: 1),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: ListTile(
@@ -69,7 +76,7 @@ class _HistoryState extends State<History> {
                     style: colorHistory(index),
                   ),
                   shape: RoundedRectangleBorder(
-                    side: BorderSide(color: Colors.white, width: 1),
+                    side: const BorderSide(color: Colors.white, width: 1),
                     borderRadius: BorderRadius.circular(20),
                   ),
                   tileColor: Colors.white,
@@ -105,12 +112,12 @@ class _HistoryState extends State<History> {
           fontWeight: FontWeight.w900,
           fontSize: 25.0);
     } else if (flames?[index] == 'E') {
-      return TextStyle(
+      return const TextStyle(
           color: Color(0xffeb0029),
           fontWeight: FontWeight.w900,
           fontSize: 25.0);
     } else if (flames?[index] == 'S') {
-      return TextStyle(
+      return const TextStyle(
           color: Colors.black, fontWeight: FontWeight.w900, fontSize: 25.0);
     }
   }

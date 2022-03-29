@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Wrapper(history: history, flames: flames),
       theme: ThemeData(fontFamily: 'Nunito'),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, must_be_immutable
 
 import 'package:flames/history.dart';
 import 'package:flames/styles.dart';
@@ -39,10 +39,13 @@ class _ResultState extends State<Result> {
             child: GestureDetector(
                 child: Icon(Icons.history_rounded, color: Colors.white),
                 onTap: () async {
-                  if (history?.length == flames2?.length) {
-                    print(history);
-                    print(flames2);
+                  if (history?.length == 1) {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content:
+                          Text("Swipe a tile to manually remove from history."),
+                    ));
                   }
+
                   await Navigator.of(context, rootNavigator: true).push(
                     CupertinoPageRoute<bool>(
                       fullscreenDialog: false,
