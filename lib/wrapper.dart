@@ -6,7 +6,6 @@ import 'package:flames/styles.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Wrapper extends StatefulWidget {
@@ -57,7 +56,7 @@ class _WrapperState extends State<Wrapper> {
         appBar: AppBar(
           title: const Center(
             child: Text(
-              'Welcome',
+              'Welcome To The World Of FLAMES',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
           ),

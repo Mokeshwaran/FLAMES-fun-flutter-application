@@ -67,7 +67,7 @@ class _HistoryState extends State<History> {
               child: Card(
                 margin: const EdgeInsets.fromLTRB(10.0, 6.0, 10.0, 6.0),
                 shape: RoundedRectangleBorder(
-                  side: const BorderSide(color: Colors.black, width: 1),
+                  side: const BorderSide(color: Colors.white, width: 1),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: ListTile(
@@ -79,7 +79,7 @@ class _HistoryState extends State<History> {
                     side: const BorderSide(color: Colors.white, width: 1),
                     borderRadius: BorderRadius.circular(20),
                   ),
-                  tileColor: Colors.white,
+                  tileColor: tileColor(index),
                   title: Text(
                     history![index],
                     //textAlign: TextAlign.center,
@@ -94,6 +94,24 @@ class _HistoryState extends State<History> {
     );
   }
 
+  tileColor(index) {
+    List<String>? flames;
+    flames = widget.flames;
+    if (flames?[index] == 'F') {
+      return Colors.blue[900];
+    } else if (flames?[index] == 'L') {
+      return Colors.pink[900];
+    } else if (flames?[index] == 'A') {
+      return Colors.purple[900];
+    } else if (flames?[index] == 'M') {
+      return Colors.green[900];
+    } else if (flames?[index] == 'E') {
+      return Colors.red[900];
+    } else if (flames?[index] == 'S') {
+      return Color.fromARGB(255, 97, 97, 97);
+    }
+  }
+
   colorHistory(index) {
     List<String>? flames;
     flames = widget.flames;
@@ -102,20 +120,18 @@ class _HistoryState extends State<History> {
           color: Colors.blue[300], fontWeight: FontWeight.w900, fontSize: 25.0);
     } else if (flames?[index] == 'L') {
       return TextStyle(
-          color: Colors.pink[600], fontWeight: FontWeight.w900, fontSize: 25.0);
+          color: Colors.pink[200], fontWeight: FontWeight.w900, fontSize: 25.0);
     } else if (flames?[index] == 'A') {
       return TextStyle(
           color: Colors.pink[200], fontWeight: FontWeight.w900, fontSize: 25.0);
     } else if (flames?[index] == 'M') {
       return TextStyle(
-          color: Colors.green[700],
+          color: Colors.green[500],
           fontWeight: FontWeight.w900,
           fontSize: 25.0);
     } else if (flames?[index] == 'E') {
-      return const TextStyle(
-          color: Color(0xffeb0029),
-          fontWeight: FontWeight.w900,
-          fontSize: 25.0);
+      return TextStyle(
+          color: Colors.red[200], fontWeight: FontWeight.w900, fontSize: 25.0);
     } else if (flames?[index] == 'S') {
       return const TextStyle(
           color: Colors.black, fontWeight: FontWeight.w900, fontSize: 25.0);

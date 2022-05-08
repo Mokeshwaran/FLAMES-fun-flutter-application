@@ -14,7 +14,8 @@ final style3 = TextStyle(
 final style4 = TextStyle(
     color: Colors.blue[500], fontWeight: FontWeight.w900, fontSize: 25.0);
 
-const style5 = TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0);
+const style5 =
+    TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16.0);
 
 const style6 =
     TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 17.0);
