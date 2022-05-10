@@ -1,10 +1,8 @@
 // ignore_for_file: unused_local_variable, prefer_const_constructors_in_immutables
 
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:flames/loading.dart';
 import 'package:flames/result.dart';
 import 'package:flames/styles.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -286,13 +284,13 @@ class _WrapperState extends State<Wrapper> {
         ),
       ]),
       bottomNavigationBar: Container(
-        color: Color(0xffffd700),
+        color: const Color(0xffffd700),
         child: Text(
           'Mokirosoft v1.0.4',
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Colors.blue[800],
-            backgroundColor: Color(0xffffd700),
+            backgroundColor: const Color(0xffffd700),
             fontWeight: FontWeight.w500,
           ),
         ),

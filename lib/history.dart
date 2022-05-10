@@ -42,7 +42,7 @@ class _HistoryState extends State<History> {
         padding: const EdgeInsets.fromLTRB(15.0, 0.0, 15.0, 0.0),
         child: history!.isEmpty
             ? Padding(
-                padding: EdgeInsets.only(top: 5),
+                padding: const EdgeInsets.only(top: 5),
                 child: Text(
                   empty(),
                   textAlign: TextAlign.center,
@@ -127,7 +127,7 @@ class _HistoryState extends State<History> {
     empty.shuffle();
     final a = random.nextInt(8);
     final e = empty.elementAt(a);
-    return ('$e');
+    return (e);
   }
 
   tileColor(index) {
