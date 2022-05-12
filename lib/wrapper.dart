@@ -88,53 +88,49 @@ class _WrapperState extends State<Wrapper> {
                       ),
                       Container(
                         padding: const EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
-                        child: Text(
-                          roles(),
-                          style: colorss(),
+                        child: AnimatedTextKit(
+                          animatedTexts: [
+                            RotateAnimatedText(
+                              'Friend',
+                              textStyle: style_ff,
+                              //duration: Duration(milliseconds: 500),
+                            ),
+                            RotateAnimatedText(
+                              'Lover',
+                              textStyle: style_ll,
+                              //duration: Duration(milliseconds: 500),
+                            ),
+                            RotateAnimatedText(
+                              'Affectionate',
+                              textStyle: style_aa,
+                              //duration: Duration(milliseconds: 500),
+                            ),
+                            RotateAnimatedText(
+                              'Marriage Partner',
+                              textStyle: style_mm,
+                              //duration: Duration(milliseconds: 500),
+                            ),
+                            RotateAnimatedText(
+                              'Enemy',
+                              textStyle: style_ee,
+                              //duration: Duration(milliseconds: 500),
+                            ),
+                            RotateAnimatedText(
+                              'Soul Mate',
+                              textStyle: style_ss,
+                              //duration: Duration(milliseconds: 500),
+                            ),
+                            FadeAnimatedText(
+                              'Everything',
+                              textStyle: style4,
+                              duration: const Duration(milliseconds: 5000),
+                            ),
+                          ],
+                          onTap: () {
+                            launch(
+                                "https://www.wikihow.com/Play-%22Flame%22#:~:text=FLAME%20is%20a%20game%20named,explore%20the%20world%20of%20crushes");
+                          },
                         ),
-                        // child: AnimatedTextKit(
-                        //   animatedTexts: [
-                        //     RotateAnimatedText(
-                        //       'Friend',
-                        //       textStyle: style_ff,
-                        //       //duration: Duration(milliseconds: 500),
-                        //     ),
-                        //     RotateAnimatedText(
-                        //       'Lover',
-                        //       textStyle: style_ll,
-                        //       //duration: Duration(milliseconds: 500),
-                        //     ),
-                        //     RotateAnimatedText(
-                        //       'Affectionate',
-                        //       textStyle: style_aa,
-                        //       //duration: Duration(milliseconds: 500),
-                        //     ),
-                        //     RotateAnimatedText(
-                        //       'Marriage Partner',
-                        //       textStyle: style_mm,
-                        //       //duration: Duration(milliseconds: 500),
-                        //     ),
-                        //     RotateAnimatedText(
-                        //       'Enemy',
-                        //       textStyle: style_ee,
-                        //       //duration: Duration(milliseconds: 500),
-                        //     ),
-                        //     RotateAnimatedText(
-                        //       'Soul Mate',
-                        //       textStyle: style_ss,
-                        //       //duration: Duration(milliseconds: 500),
-                        //     ),
-                        //     FadeAnimatedText(
-                        //       'Everything',
-                        //       textStyle: style4,
-                        //       duration: const Duration(milliseconds: 5000),
-                        //     ),
-                        //   ],
-                        //   onTap: () {
-                        //     launch(
-                        //         "https://www.wikihow.com/Play-%22Flame%22#:~:text=FLAME%20is%20a%20game%20named,explore%20the%20world%20of%20crushes");
-                        //   },
-                        // ),
                       ),
                     ],
                   ),
@@ -323,21 +319,6 @@ class _WrapperState extends State<Wrapper> {
         ),
       ),
     );
-  }
-
-  roles() {
-    List flameses = [
-      'Friend',
-      'Lover',
-      'Affectionate',
-      'Marriage Partner',
-      'Enemy',
-      'Soul Mate',
-      'Everything'
-    ];
-    flameses.shuffle();
-    final role = flameses[0];
-    return role;
   }
 
   Color _getTextBoxBackgroundColor() {

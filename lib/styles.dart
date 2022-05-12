@@ -38,20 +38,20 @@ const style_e = TextStyle(
 const style_s = TextStyle(
     color: Colors.black, fontWeight: FontWeight.bold, fontSize: 150.0);
 
-colorss() {
-  List colorss = [
-    TextStyle(
-        color: Colors.blue[300], fontWeight: FontWeight.w900, fontSize: 25.0),
-    TextStyle(
-        color: Colors.pink[600], fontWeight: FontWeight.w900, fontSize: 25.0),
-    TextStyle(
-        color: Colors.pink[200], fontWeight: FontWeight.w900, fontSize: 25.0),
-    TextStyle(
-        color: Colors.green[700], fontWeight: FontWeight.w900, fontSize: 25.0),
-    TextStyle(
-        color: Color(0xffeb0029), fontWeight: FontWeight.w900, fontSize: 25.0),
-    TextStyle(color: Colors.black, fontWeight: FontWeight.w900, fontSize: 25.0),
-  ];
-  colorss.shuffle();
-  return colorss[0];
-}
+final style_ff = TextStyle(
+    color: Colors.blue[300], fontWeight: FontWeight.w900, fontSize: 25.0);
+
+final style_ll = TextStyle(
+    color: Colors.pink[600], fontWeight: FontWeight.w900, fontSize: 25.0);
+
+final style_aa = TextStyle(
+    color: Colors.pink[200], fontWeight: FontWeight.w900, fontSize: 25.0);
+
+final style_mm = TextStyle(
+    color: Colors.green[700], fontWeight: FontWeight.w900, fontSize: 25.0);
+
+const style_ee = TextStyle(
+    color: Color(0xffeb0029), fontWeight: FontWeight.w900, fontSize: 25.0);
+
+const style_ss =
+    TextStyle(color: Colors.black, fontWeight: FontWeight.w900, fontSize: 25.0);
