@@ -29,6 +29,7 @@ class _ResultState extends State<Result> {
     List<String>? flames2 = widget.flames;
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         automaticallyImplyLeading: false,
         leading: GestureDetector(
             child: Icon(Icons.arrow_back_ios_new_outlined),
@@ -41,8 +42,8 @@ class _ResultState extends State<Result> {
                 onTap: () async {
                   if (history?.length == 1) {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                      content:
-                          Text("Swipe a tile to manually remove from history."),
+                      content: Text(
+                          "Swipe a tile to remove names from history, or click the bin icon on top to clear all"),
                     ));
                   }
 
@@ -58,11 +59,9 @@ class _ResultState extends State<Result> {
                 }),
           ),
         ],
-        title: Center(
-          child: Text(
-            widget.name + ' & ' + widget.partnerName,
-            style: TextStyle(fontWeight: FontWeight.w900),
-          ),
+        title: Text(
+          widget.name + ' & ' + widget.partnerName,
+          style: TextStyle(fontWeight: FontWeight.w900),
         ),
         backgroundColor: Colors.blue[800],
       ),

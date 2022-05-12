@@ -20,18 +20,32 @@ class _HistoryState extends State<History> {
     history = widget.history;
     List<String>? flames;
     flames = widget.flames;
+    bool his = history!.isEmpty;
     //print(flames);
     // List<String> partnerNameHistory = [];
     // partnerNameHistory.insert(partnerNameHistory.length, widget.partnerName);
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         automaticallyImplyLeading: false,
-        title: const Center(
-          child: Text(
-            'History',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
+        title: const Text(
+          'History',
+          style: TextStyle(fontWeight: FontWeight.bold),
         ),
+        actions: history.isEmpty
+            ? null
+            : <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: GestureDetector(
+                      child: Icon(Icons.delete_rounded, color: Colors.white),
+                      onTap: () async {
+                        setState(() {
+                          history?.clear();
+                        });
+                      }),
+                ),
+              ],
         backgroundColor: Colors.blue[800],
         elevation: 0.0,
       ),
@@ -40,7 +54,7 @@ class _HistoryState extends State<History> {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         padding: const EdgeInsets.fromLTRB(15.0, 0.0, 15.0, 0.0),
-        child: history!.isEmpty
+        child: his
             ? Padding(
                 padding: const EdgeInsets.only(top: 5),
                 child: Text(
@@ -79,6 +93,11 @@ class _HistoryState extends State<History> {
                     onDismissed: (direction) {
                       history?.remove(history[index]);
                       flames?.remove(flames[index]);
+                      if (history!.isEmpty) {
+                        setState(() {
+                          his = true;
+                        });
+                      }
                     },
                     child: Card(
                       margin: const EdgeInsets.fromLTRB(10.0, 6.0, 10.0, 6.0),
