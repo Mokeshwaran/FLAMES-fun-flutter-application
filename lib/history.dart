@@ -28,6 +28,9 @@ class _HistoryState extends State<History> {
       appBar: AppBar(
         centerTitle: true,
         automaticallyImplyLeading: false,
+        leading: GestureDetector(
+            child: const Icon(Icons.arrow_back_ios_new_outlined),
+            onTap: () => Navigator.pop(context)),
         title: const Text(
           'History',
           style: TextStyle(fontWeight: FontWeight.bold),
@@ -192,6 +195,9 @@ class _HistoryState extends State<History> {
           color: Color.fromARGB(255, 129, 129, 129),
           fontWeight: FontWeight.w900,
           fontSize: 25.0);
+    } else {
+      return const TextStyle(
+          color: Colors.white, fontWeight: FontWeight.w900, fontSize: 25.0);
     }
   }
 }

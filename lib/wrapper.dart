@@ -1,6 +1,7 @@
 // ignore_for_file: unused_local_variable, prefer_const_constructors_in_immutables
 
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flames/loading.dart';
 import 'package:flames/result.dart';
 import 'package:flames/styles.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +23,7 @@ class _WrapperState extends State<Wrapper> {
   final _formKey = GlobalKey<FormState>();
   TextEditingController nameController = TextEditingController();
   TextEditingController partnerController = TextEditingController();
+  bool heart = false;
 
   @override
   void initState() {
@@ -30,6 +32,7 @@ class _WrapperState extends State<Wrapper> {
     _focusNode.addListener(_onOnFocusNodeEvent);
     _focusNode2 = FocusNode();
     _focusNode2.addListener(_onOnFocusNodeEvent);
+    animatedtext();
   }
 
   @override
@@ -37,6 +40,7 @@ class _WrapperState extends State<Wrapper> {
     super.dispose();
     _focusNode.dispose();
     _focusNode2.dispose();
+    // animatedtext().dispose();
   }
 
   _onOnFocusNodeEvent() {
@@ -51,6 +55,7 @@ class _WrapperState extends State<Wrapper> {
     late String partnerName;
     late List<String>? history = widget.history;
     late List<String>? flames = widget.flames;
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -88,49 +93,7 @@ class _WrapperState extends State<Wrapper> {
                       ),
                       Container(
                         padding: const EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
-                        child: AnimatedTextKit(
-                          animatedTexts: [
-                            RotateAnimatedText(
-                              'Friend',
-                              textStyle: style_ff,
-                              //duration: Duration(milliseconds: 500),
-                            ),
-                            RotateAnimatedText(
-                              'Lover',
-                              textStyle: style_ll,
-                              //duration: Duration(milliseconds: 500),
-                            ),
-                            RotateAnimatedText(
-                              'Affectionate',
-                              textStyle: style_aa,
-                              //duration: Duration(milliseconds: 500),
-                            ),
-                            RotateAnimatedText(
-                              'Marriage Partner',
-                              textStyle: style_mm,
-                              //duration: Duration(milliseconds: 500),
-                            ),
-                            RotateAnimatedText(
-                              'Enemy',
-                              textStyle: style_ee,
-                              //duration: Duration(milliseconds: 500),
-                            ),
-                            RotateAnimatedText(
-                              'Soul Mate',
-                              textStyle: style_ss,
-                              //duration: Duration(milliseconds: 500),
-                            ),
-                            FadeAnimatedText(
-                              'Everything',
-                              textStyle: style4,
-                              duration: const Duration(milliseconds: 5000),
-                            ),
-                          ],
-                          onTap: () {
-                            launch(
-                                "https://www.wikihow.com/Play-%22Flame%22#:~:text=FLAME%20is%20a%20game%20named,explore%20the%20world%20of%20crushes");
-                          },
-                        ),
+                        child: animatedtext(),
                       ),
                     ],
                   ),
@@ -214,9 +177,10 @@ class _WrapperState extends State<Wrapper> {
                     child: partnerController.text.isNotEmpty &&
                             nameController.text.isNotEmpty
                         ? ElevatedButton(
-                            onPressed: () {
+                            onPressed: () async {
                               if (_formKey.currentState!.validate()) {
                                 setState(() {
+                                  heart = true;
                                   if (nameController.text !=
                                       partnerController.text) {
                                     history?.insert(
@@ -233,38 +197,45 @@ class _WrapperState extends State<Wrapper> {
                                   }
                                 });
 
-                                Route yourCustomRoute() {
-                                  return PageRouteBuilder(
-                                    pageBuilder: (context, animation,
-                                            secondaryAnimation) =>
-                                        Result(
-                                      name: nameController.text,
-                                      partnerName: partnerController.text,
-                                      history: history,
-                                      flames: flames,
-                                    ),
-                                    transitionsBuilder: (context, animation,
-                                        secondaryAnimation, child) {
-                                      var begin = const Offset(1, 0);
-                                      var end = Offset.zero;
-                                      var curve = Curves.ease;
-                                      var tween = Tween(begin: begin, end: end)
-                                          .chain(CurveTween(curve: curve));
-                                      return SlideTransition(
-                                        position: animation.drive(tween),
-                                        child: child,
-                                      );
-                                    },
-                                    transitionDuration: const Duration(
-                                        seconds: 1), //any duration you want
-                                  );
-                                }
+                                Future.delayed(
+                                    const Duration(milliseconds: 1000),
+                                    () async {
+                                  heart = false;
+                                  Route yourCustomRoute() {
+                                    return PageRouteBuilder(
+                                      pageBuilder: (context, animation,
+                                              secondaryAnimation) =>
+                                          Result(
+                                        name: nameController.text,
+                                        partnerName: partnerController.text,
+                                        history: history,
+                                        flames: flames,
+                                      ),
+                                      transitionsBuilder: (context, animation,
+                                          secondaryAnimation, child) {
+                                        var begin = const Offset(1, 0);
+                                        var end = Offset.zero;
+                                        var curve = Curves.ease;
+                                        var tween = Tween(
+                                                begin: begin, end: end)
+                                            .chain(CurveTween(curve: curve));
+                                        return SlideTransition(
+                                          position: animation.drive(tween),
+                                          child: child,
+                                        );
+                                      },
+                                      transitionDuration: const Duration(
+                                          seconds: 1), //any duration you want
+                                    );
+                                  }
 
-                                Navigator.of(context, rootNavigator: true)
-                                    .push(yourCustomRoute());
+                                  await Navigator.of(context,
+                                          rootNavigator: true)
+                                      .push(yourCustomRoute());
+                                });
                               }
                             },
-                            child: const Text('❤️ Predict! ❤️',
+                            child: const Text('Predict!',
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
@@ -282,13 +253,21 @@ class _WrapperState extends State<Wrapper> {
                           )
                         : ElevatedButton(
                             onPressed: null,
-                            child: const Text(
-                              'Type The Names',
-                              style: TextStyle(
-                                  color: Colors.white60,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 17.0),
-                            ),
+                            child: nameController.text.isEmpty
+                                ? const Text(
+                                    'Type Your Name',
+                                    style: TextStyle(
+                                        color: Colors.white60,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 17.0),
+                                  )
+                                : const Text(
+                                    'Type Your Partner\'s Name',
+                                    style: TextStyle(
+                                        color: Colors.white60,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 17.0),
+                                  ),
                             style: ButtonStyle(
                               backgroundColor:
                                   MaterialStateProperty.all(Colors.grey),
@@ -300,6 +279,10 @@ class _WrapperState extends State<Wrapper> {
                               ),
                             )),
                   ),
+                  const SizedBox(height: 20.0),
+                  SizedBox(
+                    child: heart ? const Loading() : null,
+                  ),
                 ],
               ),
             ),
@@ -309,15 +292,61 @@ class _WrapperState extends State<Wrapper> {
       bottomNavigationBar: Container(
         color: const Color(0xffffd700),
         child: Text(
-          'Mokirosoft v1.0.4',
+          'Mokirosoft v1.0.6',
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Colors.blue[800],
             backgroundColor: const Color(0xffffd700),
-            fontWeight: FontWeight.w500,
+            fontWeight: FontWeight.w600,
           ),
         ),
       ),
+    );
+  }
+
+  animatedtext() {
+    return AnimatedTextKit(
+      animatedTexts: [
+        RotateAnimatedText(
+          'Friend',
+          textStyle: style_ff,
+          //duration: Duration(milliseconds: 500),
+        ),
+        RotateAnimatedText(
+          'Lover',
+          textStyle: style_ll,
+          //duration: Duration(milliseconds: 500),
+        ),
+        RotateAnimatedText(
+          'Affectionate',
+          textStyle: style_aa,
+          //duration: Duration(milliseconds: 500),
+        ),
+        RotateAnimatedText(
+          'Marriage Partner',
+          textStyle: style_mm,
+          //duration: Duration(milliseconds: 500),
+        ),
+        RotateAnimatedText(
+          'Enemy',
+          textStyle: style_ee,
+          //duration: Duration(milliseconds: 500),
+        ),
+        RotateAnimatedText(
+          'Sibling',
+          textStyle: style_ss,
+          //duration: Duration(milliseconds: 500),
+        ),
+        FadeAnimatedText(
+          'Everything',
+          textStyle: style4,
+          duration: const Duration(milliseconds: 5000),
+        ),
+      ],
+      onTap: () {
+        launch(
+            "https://medium.com/@ritwika285/how-to-play-flames-game-890edc7bf3d");
+      },
     );
   }
 
