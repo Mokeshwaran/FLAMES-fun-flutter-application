@@ -41,7 +41,8 @@ class _HistoryState extends State<History> {
                 Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: GestureDetector(
-                      child: Icon(Icons.delete_rounded, color: Colors.white),
+                      child:
+                          const Icon(Icons.delete_rounded, color: Colors.white),
                       onTap: () async {
                         setState(() {
                           history?.clear();
