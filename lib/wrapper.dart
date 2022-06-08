@@ -291,15 +291,15 @@ class _WrapperState extends State<Wrapper> {
       ),
       bottomNavigationBar: Container(
         color: const Color(0xffffd700),
-        child: Text(
-          'Mokirosoft v1.0.6',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.blue[800],
-            backgroundColor: const Color(0xffffd700),
-            fontWeight: FontWeight.w600,
-          ),
-        ),
+        // child: Text(
+        //   'Mokirosoft v1.0.6',
+        //   textAlign: TextAlign.center,
+        //   style: TextStyle(
+        //     color: Colors.blue[800],
+        //     backgroundColor: const Color(0xffffd700),
+        //     fontWeight: FontWeight.w600,
+        //   ),
+        // ),
       ),
     );
   }
